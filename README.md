@@ -4,15 +4,21 @@ This is an ESP32 demo project showcasing LVGL v7 with support for several displa
 The demo application is the `lv_demo_widgets` project from the [lv_examples](https://github.com/lvgl/lv_examples) repository.
 
 - Version of ESP-IDF required 4.2. NOTE: We're trying to make this repo backwards compatible, usage of idf.py is encouraged.
-- Version of LVGL used: 7.9.
-- Version of lv_examples used: 7.9.
+- Version of LVGL used: 8.3.
 
 #### Table of content
-- [Get started](#get-started)
-- [Use LVGL in your ESP-IDF project](#use-lvgl-in-your-esp-idf-project)
-- [Use lvgl_esp32_drivers in your project](#use-lvgl_esp32_drivers-in-your-project)
-- [Platformio support](#platformio-support)
+- [LVGL project for ESP32](#lvgl-project-for-esp32)
+      - [Table of content](#table-of-content)
+  - [Display and touch controllers](#display-and-touch-controllers)
+  - [Get started](#get-started)
+    - [Prerequisites](#prerequisites)
+    - [Note](#note)
+    - [Build and run the demo.](#build-and-run-the-demo)
+  - [Use LVGL in your ESP-IDF project](#use-lvgl-in-your-esp-idf-project)
+  - [Use lvgl\_esp32\_drivers in your project](#use-lvgl_esp32_drivers-in-your-project)
+  - [Platformio support](#platformio-support)
 - [ESP32-S2 Support](#esp32-s2-support)
+  - [Background](#background)
 
 Example demo for TFT displays:
 

@@ -31,13 +31,13 @@
 
 #ifndef CONFIG_LV_TFT_DISPLAY_MONOCHROME
     #if defined CONFIG_LV_USE_DEMO_WIDGETS
-        #include "lv_examples/src/lv_demo_widgets/lv_demo_widgets.h"
+        #include "lvgl/demos/widgets/lv_demo_widgets.h"
     #elif defined CONFIG_LV_USE_DEMO_KEYPAD_AND_ENCODER
-        #include "lv_examples/src/lv_demo_keypad_encoder/lv_demo_keypad_encoder.h"
+        #include "lvgl/demos/keypad_encoder/lv_demo_keypad_encoder.h"
     #elif defined CONFIG_LV_USE_DEMO_BENCHMARK
-        #include "lv_examples/src/lv_demo_benchmark/lv_demo_benchmark.h"
+        #include "lvgl/demos/benchmark/lv_demo_benchmark.h"
     #elif defined CONFIG_LV_USE_DEMO_STRESS
-        #include "lv_examples/src/lv_demo_stress/lv_demo_stress.h"
+        #include "lvgl/demos/stress/lv_demo_stress.h"
     #else
         #error "No demo application selected."
     #endif
@@ -93,7 +93,7 @@ static void guiTask(void *pvParameter) {
     static lv_color_t *buf2 = NULL;
 #endif
 
-    static lv_disp_buf_t disp_buf;
+    static lv_disp_draw_buf_t disp_buf;
 
     uint32_t size_in_px = DISP_BUF_SIZE;
 
@@ -108,7 +108,7 @@ static void guiTask(void *pvParameter) {
 
     /* Initialize the working buffer depending on the selected display.
      * NOTE: buf2 == NULL when using monochrome displays. */
-    lv_disp_buf_init(&disp_buf, buf1, buf2, size_in_px);
+    lv_disp_draw_buf_init(&disp_buf, buf1, buf2, size_in_px);
 
     lv_disp_drv_t disp_drv;
     lv_disp_drv_init(&disp_drv);
@@ -126,7 +126,11 @@ static void guiTask(void *pvParameter) {
     disp_drv.set_px_cb = disp_driver_set_px;
 #endif
 
-    disp_drv.buffer = &disp_buf;
+    disp_drv.hor_res = CONFIG_LV_HOR_RES_MAX;
+    disp_drv.ver_res = CONFIG_LV_VER_RES_MAX;
+    //disp_drv.antialiasing = 1;
+
+    disp_drv.draw_buf = &disp_buf;
     lv_disp_drv_register(&disp_drv);
 
     /* Register an input device when enabled on the menuconfig */
